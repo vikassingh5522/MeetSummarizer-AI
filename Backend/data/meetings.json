@@ -1,0 +1,89 @@
+[
+  {
+    "id": "seed-1",
+    "title": "Project Kickoff & Tech Stack Decision",
+    "date": "2026-06-19T07:48:18.325Z",
+    "transcript": "John: Let's kickoff the Smart Meeting Summary project.\nSarah: What is the tech stack?\nJohn: We will use Node.js and Express for the backend, and React for the frontend.\nMike: Let's use TailwindCSS for styling if possible, but keep vanilla CSS as fallback. For AI, we'll use Mistral AI.\nSarah: I will setup the repo and backend structure.",
+    "summary": {
+      "agenda": [
+        "Project kickoff",
+        "Tech stack discussion"
+      ],
+      "decisions": [
+        "Use Node.js, Express, and React",
+        "Use Mistral AI for AI features"
+      ],
+      "action_items": [
+        {
+          "owner": "Sarah",
+          "task": "Setup the repo and backend structure",
+          "due_date": "Friday"
+        }
+      ]
+    }
+  },
+  {
+    "id": "seed-2",
+    "title": "UI Design Sync & Setup",
+    "date": "2026-06-23T07:48:18.325Z",
+    "transcript": "John: Let's review UI progress.\nMike: I have setup the React structure with Vite. I will build the initial components by Tuesday.\nSarah: The backend APIs for summarization are ready, but we need to implement RAG next.\nJohn: We'll implement a file-based RAG using TF-IDF for cosine similarity to find relevant meetings. Let's aim to complete the integration by Friday.",
+    "summary": {
+      "agenda": [
+        "UI progress review",
+        "RAG implementation planning"
+      ],
+      "decisions": [
+        "Use file-based RAG with TF-IDF and cosine similarity"
+      ],
+      "action_items": [
+        {
+          "owner": "Mike",
+          "task": "Build initial React components",
+          "due_date": "Tuesday"
+        },
+        {
+          "owner": "Sarah",
+          "task": "Implement RAG backend integration",
+          "due_date": "Friday"
+        }
+      ]
+    }
+  },
+  {
+    "id": "meet_7q66rtfc8",
+    "title": "Meeting: finalize the Sprint 8 tasks (Jun 26, 2026)",
+    "date": "2026-06-26T07:56:40.593Z",
+    "transcript": "Meeting: Sprint Planning - Mobile App\nDate: July 15, 2026\n\nJohn (Project Manager):\nGood morning everyone. Today's agenda is to finalize the Sprint 8 tasks and confirm the release timeline.\n\nSarah (Backend Developer):\nThe authentication APIs are completed and tested. They're ready for integration.\n\nMike (Frontend Developer):\nThe dashboard UI is about 80% complete. I need two more days to finish the remaining components.\n\nEmily (QA Engineer):\nTesting of the login flow is complete. I found two minor bugs in the dashboard that need to be fixed before release.\n\nJohn:\nConsidering the remaining frontend work and QA fixes, I propose moving the release from July 20 to July 23.\n\nEveryone:\nAgreed.\n\nSarah:\nI'll help Mike integrate the authentication APIs by tomorrow.\n\nMike:\nI'll complete the dashboard UI by July 17.\n\nEmily:\nI'll start full regression testing on July 18 and submit the QA report by July 19.\n\nJohn:\nGreat. We'll have our next status meeting on July 18.",
+    "summary": {
+      "agenda": [
+        "finalize the Sprint 8 tasks",
+        "confirm the release timeline"
+      ],
+      "decisions": [
+        "move the release from July 20 to July 23"
+      ],
+      "action_items": [
+        {
+          "owner": "Sarah",
+          "task": "help Mike integrate the authentication APIs",
+          "due_date": "July 16, 2026"
+        },
+        {
+          "owner": "Mike",
+          "task": "complete the dashboard UI",
+          "due_date": "July 17, 2026"
+        },
+        {
+          "owner": "Emily",
+          "task": "start full regression testing",
+          "due_date": "July 18, 2026"
+        },
+        {
+          "owner": "Emily",
+          "task": "submit the QA report",
+          "due_date": "July 19, 2026"
+        }
+      ]
+    }
+  }
+]
