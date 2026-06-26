@@ -1,6 +1,6 @@
 const SUMMARY_SCHEMA = `{
   "agenda": ["topic explicitly discussed"],
-  "decisions": ["decision explicitly made (Reason: reason for the decision, if explicitly stated in transcript, otherwise omit reason)"],
+  "decisions": ["decision explicitly made. If a reason is explicitly stated, append 'Reason: ...' in the same string."],
   "action_items": [
     {
       "owner": "person explicitly assigned, or null",
@@ -12,7 +12,7 @@ const SUMMARY_SCHEMA = `{
 
 const SECTION_SCHEMAS = {
   agenda: `{"agenda": ["topic explicitly discussed"]}`,
-  decisions: `{"decisions": ["decision explicitly made (Reason: reason for the decision, if explicitly stated in transcript, otherwise omit reason)"]}`,
+  decisions: `{"decisions": ["decision explicitly made. If a reason is explicitly stated, append 'Reason: ...' in the same string."]}`,
   action_items: `{
   "action_items": [
     {
@@ -28,6 +28,7 @@ const SYSTEM_PROMPT = `You are a careful meeting-notes extraction engine.
 Extract only facts explicitly present in the transcript.
 Do not infer, guess, embellish, or add outside knowledge.
 If an owner or due date is not explicitly stated, return null for that field.
+If a decision includes a stated reason, include it in the same decision string using the format "Decision text. Reason: ...".
 If no agenda topics, decisions, or action items are present, return an empty array for that section.
 Return JSON only. Do not include markdown, commentary, or prose.`;
 
@@ -109,4 +110,3 @@ ${rawContent}`
     }
   ];
 }
-

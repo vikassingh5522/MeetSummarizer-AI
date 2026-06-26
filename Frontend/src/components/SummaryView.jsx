@@ -1,18 +1,25 @@
+import { useEffect, useState } from 'react';
 import { AgendaSection } from './AgendaSection';
 import { DecisionsSection } from './DecisionsSection';
 import { ActionItemsSection } from './ActionItemsSection';
-import { Sparkles, BrainCircuit, ExternalLink, Calendar } from 'lucide-react';
+import { Sparkles, BrainCircuit, Calendar, ChevronDown, ChevronUp } from 'lucide-react';
 
 export function SummaryView({
   summary,
   meetingId,
   meetingTitle,
   meetingDate,
-  retrievedContext,
+  retrievedContext = [],
   onUpdateSection,
   onRegenerateSection,
   isRegeneratingSection
 }) {
+  const [showRetrievedContext, setShowRetrievedContext] = useState(false);
+
+  useEffect(() => {
+    setShowRetrievedContext(false);
+  }, [meetingId, retrievedContext.length]);
+
   if (!summary) return null;
 
   const formatDate = (isoString) => {
@@ -51,9 +58,28 @@ export function SummaryView({
       {/* RAG Context Display */}
       {retrievedContext && retrievedContext.length > 0 && (
         <div className="rag-context-card">
-          <div className="rag-header">
-            <BrainCircuit className="rag-icon" size={18} />
-            <h4>Retrieval-Augmented Generation (RAG) Active</h4>
+          <div className="rag-header-row">
+            <div className="rag-header">
+              <BrainCircuit className="rag-icon" size={18} />
+              <h4>Retrieval-Augmented Generation (RAG) Active</h4>
+            </div>
+            <button
+              type="button"
+              className="rag-toggle-button"
+              onClick={() => setShowRetrievedContext((value) => !value)}
+            >
+              {showRetrievedContext ? (
+                <>
+                  <ChevronUp size={14} />
+                  <span>Hide retrieved meetings</span>
+                </>
+              ) : (
+                <>
+                  <ChevronDown size={14} />
+                  <span>View retrieved meetings</span>
+                </>
+              )}
+            </button>
           </div>
           <p className="rag-description">
             Injected historical context from past meetings to maintain topic continuity:
@@ -69,6 +95,71 @@ export function SummaryView({
               </div>
             ))}
           </div>
+          {showRetrievedContext && (
+            <div className="rag-detail-list">
+              {retrievedContext.map((context) => {
+                const agenda = context.summary?.agenda || [];
+                const decisions = context.summary?.decisions || [];
+                const actionItems = context.summary?.action_items || [];
+
+                return (
+                  <article key={context.id} className="rag-detail-card">
+                    <div className="rag-detail-header">
+                      <div>
+                        <h5>{context.title}</h5>
+                        <p>
+                          {new Date(context.date).toLocaleDateString(undefined, {
+                            month: 'short',
+                            day: 'numeric',
+                            year: 'numeric'
+                          })}
+                        </p>
+                      </div>
+                      <span className="rag-detail-count">
+                        {agenda.length + decisions.length + actionItems.length} items
+                      </span>
+                    </div>
+
+                    <div className="rag-detail-columns">
+                      <div>
+                        <span className="rag-detail-label">Agenda</span>
+                        <ul>
+                          {agenda.slice(0, 2).map((item, index) => (
+                            <li key={`${context.id}-agenda-${index}`}>{item}</li>
+                          ))}
+                          {agenda.length > 2 && <li>+{agenda.length - 2} more</li>}
+                        </ul>
+                      </div>
+
+                      <div>
+                        <span className="rag-detail-label">Decisions</span>
+                        <ul>
+                          {decisions.slice(0, 2).map((item, index) => (
+                            <li key={`${context.id}-decision-${index}`}>{item}</li>
+                          ))}
+                          {decisions.length > 2 && <li>+{decisions.length - 2} more</li>}
+                        </ul>
+                      </div>
+
+                      <div>
+                        <span className="rag-detail-label">Action items</span>
+                        <ul>
+                          {actionItems.slice(0, 2).map((item, index) => (
+                            <li key={`${context.id}-action-${index}`}>
+                              {item.owner ? `${item.owner}: ` : ''}
+                              {item.task}
+                              {item.due_date ? ` (Due ${item.due_date})` : ''}
+                            </li>
+                          ))}
+                          {actionItems.length > 2 && <li>+{actionItems.length - 2} more</li>}
+                        </ul>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          )}
         </div>
       )}
 

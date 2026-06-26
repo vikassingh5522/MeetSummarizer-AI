@@ -33,6 +33,31 @@ export function DecisionsSection({ items, onUpdate, onRegenerate, isRegenerating
     setLocalItems(localItems.filter((_, i) => i !== index));
   };
 
+  const parseDecision = (item) => {
+    if (typeof item !== 'string') {
+      return { decision: '', reason: null };
+    }
+
+    const trimmed = item.trim();
+    const reasonMatch = trimmed.match(/^(.*?)(?:\s*\(Reason:\s*(.*)\))$/i);
+    if (reasonMatch) {
+      return {
+        decision: reasonMatch[1].trim().replace(/[.;:\-]+$/, '').trim(),
+        reason: reasonMatch[2].trim().replace(/[.)]+$/, '').trim()
+      };
+    }
+
+    const inlineReasonMatch = trimmed.match(/^(.*?)(?:\s+Reason:\s*)(.+)$/i);
+    if (inlineReasonMatch) {
+      return {
+        decision: inlineReasonMatch[1].trim().replace(/[.;:\-]+$/, '').trim(),
+        reason: inlineReasonMatch[2].trim()
+      };
+    }
+
+    return { decision: trimmed, reason: null };
+  };
+
   return (
     <div className="summary-card" aria-labelledby="decisions-title">
       <div className="card-header">
@@ -113,12 +138,23 @@ export function DecisionsSection({ items, onUpdate, onRegenerate, isRegenerating
         ) : (
           <ul className="decisions-list">
             {items && items.length > 0 ? (
-              items.map((item, idx) => (
-                <li key={idx} className="decision-item">
-                  <span className="bullet-gavel" />
-                  <span className="item-text">{item}</span>
-                </li>
-              ))
+              items.map((item, idx) => {
+                const parsed = parseDecision(item);
+
+                return (
+                  <li key={idx} className="decision-item">
+                    <span className="bullet-gavel" />
+                    <span className="decision-content">
+                      <span className="item-text">{parsed.decision || item}</span>
+                      {parsed.reason && (
+                        <span className="decision-reason">
+                          <strong>Reason:</strong> {parsed.reason}
+                        </span>
+                      )}
+                    </span>
+                  </li>
+                );
+              })
             ) : (
               <p className="empty-section-text">No key decisions identified.</p>
             )}
