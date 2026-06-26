@@ -1,28 +1,5 @@
 [
   {
-    "id": "seed-1",
-    "title": "Project Kickoff & Tech Stack Decision",
-    "date": "2026-06-19T07:48:18.325Z",
-    "transcript": "John: Let's kickoff the Smart Meeting Summary project.\nSarah: What is the tech stack?\nJohn: We will use Node.js and Express for the backend, and React for the frontend.\nMike: Let's use TailwindCSS for styling if possible, but keep vanilla CSS as fallback. For AI, we'll use Mistral AI.\nSarah: I will setup the repo and backend structure.",
-    "summary": {
-      "agenda": [
-        "Project kickoff",
-        "Tech stack discussion"
-      ],
-      "decisions": [
-        "Use Node.js, Express, and React",
-        "Use Mistral AI for AI features"
-      ],
-      "action_items": [
-        {
-          "owner": "Sarah",
-          "task": "Setup the repo and backend structure",
-          "due_date": "Friday"
-        }
-      ]
-    }
-  },
-  {
     "id": "seed-2",
     "title": "UI Design Sync & Setup",
     "date": "2026-06-23T07:48:18.325Z",
@@ -82,6 +59,96 @@
           "owner": "Emily",
           "task": "submit the QA report",
           "due_date": "July 19, 2026"
+        }
+      ]
+    }
+  },
+  {
+    "id": "meet_4cljdzj8r",
+    "title": "Meeting: finalize the customer portal launch plan (Jun 26, 2026)",
+    "date": "2026-06-26T08:36:10.959Z",
+    "transcript": "Meeting: Customer Portal Launch Planning\nDate: July 22, 2026\nTime: 10:00 AM\n\nDavid (Product Manager):\nGood morning, everyone. Today's agenda is to finalize the customer portal launch plan and discuss the remaining blockers.\n\nLisa (UI/UX Designer):\nThe new dashboard designs have been approved by the stakeholders. I'll share the final Figma files after this meeting.\n\nKevin (Backend Developer):\nThe payment integration is complete. However, the notification service still needs testing.\n\nSophia (QA Engineer):\nI've completed testing for user registration and profile management. Payment testing will begin once Kevin finishes the notification service.\n\nDavid:\nConsidering the remaining work, I think we should postpone the launch from July 25 to July 29.\n\nEveryone:\nAgreed.\n\nKevin:\nI'll finish the notification service by July 24.\n\nLisa:\nI'll share the final design files today.\n\nSophia:\nI'll begin payment testing immediately after the notification service is completed.\n\nDavid:\nI'll inform the client about the updated launch date this afternoon.\n\nMeeting concluded at 10:45 AM.",
+    "summary": {
+      "agenda": [
+        "finalize the customer portal launch plan",
+        "discuss the remaining blockers"
+      ],
+      "decisions": [
+        "postpone the launch from July 25 to July 29"
+      ],
+      "action_items": [
+        {
+          "owner": "Kevin",
+          "task": "finish the notification service",
+          "due_date": "July 24, 2026",
+          "evidence": "I've completed testing for user registration and profile management. Payment testing will begin once Kevin finishes the notification service."
+        },
+        {
+          "owner": "Lisa",
+          "task": "share the final design files",
+          "due_date": null,
+          "evidence": "I'll share the final design files today."
+        },
+        {
+          "owner": "Sophia",
+          "task": "begin payment testing immediately after the notification service is completed",
+          "due_date": null,
+          "evidence": "I'll begin payment testing immediately after the notification service is completed."
+        },
+        {
+          "owner": "David",
+          "task": "inform the client about the updated launch date",
+          "due_date": null,
+          "evidence": "I'll inform the client about the updated launch date this afternoon."
+        }
+      ]
+    }
+  },
+  {
+    "id": "meet_6kutq9deh",
+    "title": "Meeting: review the chatbot development progress (Jun 26, 2026)",
+    "date": "2026-06-26T09:06:00.506Z",
+    "transcript": "Meeting: AI Chatbot Development Review\nDate: August 5, 2026\nTime: 2:00 PM\n\nEmma (Engineering Manager):\nGood afternoon, everyone. Today's agenda is to review the chatbot development progress, discuss the testing plan, and finalize the beta release schedule.\n\nRyan (Backend Developer):\nThe chatbot API is complete and deployed to the staging environment.\n\nOlivia (Frontend Developer):\nThe chat interface is complete, but conversation history still needs some UI improvements.\n\nDaniel (AI Engineer):\nI've improved the prompt to reduce hallucinations and increased response accuracy. However, multilingual support is still under development.\n\nSophia (QA Engineer):\nInitial testing is complete. I found three medium-priority bugs related to chat history and API timeout.\n\nEmma:\nSince multilingual support isn't ready yet, I suggest we release the beta without it and add multilingual support in the next sprint.\n\nEveryone:\nAgreed.\n\nEmma:\nLet's move the beta release from August 8 to August 10 so QA has additional testing time.\n\nEveryone:\nApproved.\n\nRyan:\nI'll investigate the API timeout issue and deploy a fix by Friday.\n\nOlivia:\nI'll finish the chat history improvements by August 7.\n\nDaniel:\nI'll continue working on multilingual support.\n\nSophia:\nI'll complete regression testing after Ryan deploys the fix.\n\nEmma:\nI'll prepare the beta release announcement and inform the stakeholders before launch.\n\nMeeting ended at 3:05 PM.",
+    "summary": {
+      "agenda": [
+        "review the chatbot development progress",
+        "discuss the testing plan",
+        "finalize the beta release schedule"
+      ],
+      "decisions": [
+        "release the beta without multilingual support and add multilingual support in the next sprint",
+        "move the beta release from August 8 to August 10. Reason: additional testing time"
+      ],
+      "action_items": [
+        {
+          "owner": "Ryan",
+          "task": "investigate the API timeout issue and deploy a fix",
+          "due_date": "Friday",
+          "evidence": "I'll investigate the API timeout issue and deploy a fix by Friday."
+        },
+        {
+          "owner": "Olivia",
+          "task": "finish the chat history improvements",
+          "due_date": "August 7, 2026",
+          "evidence": "I'll finish the chat history improvements by August 7."
+        },
+        {
+          "owner": "Daniel",
+          "task": "continue working on multilingual support",
+          "due_date": null,
+          "evidence": "I'll continue working on multilingual support."
+        },
+        {
+          "owner": "Sophia",
+          "task": "complete regression testing after Ryan deploys the fix",
+          "due_date": null,
+          "evidence": "I'll complete regression testing after Ryan deploys the fix."
+        },
+        {
+          "owner": "Emma",
+          "task": "prepare the beta release announcement and inform the stakeholders before launch",
+          "due_date": null,
+          "evidence": "I'll prepare the beta release announcement and inform the stakeholders before launch."
         }
       ]
     }

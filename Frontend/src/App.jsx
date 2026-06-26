@@ -1,13 +1,29 @@
 import { useState, useEffect } from 'react';
-import { FileText, Sparkles, Brain, Plus, Eraser } from 'lucide-react';
+import { FileText, Sparkles, Brain, Plus, Eraser, Moon, Sun, HelpCircle } from 'lucide-react';
 import { TranscriptInput } from './components/TranscriptInput';
 import { SummaryView } from './components/SummaryView';
 import { PastMeetingsList } from './components/PastMeetingsList';
 import { LoadingState } from './components/LoadingState';
 import { ErrorState } from './components/ErrorState';
+import { LandingPages, fallbackLandingContent } from './components/LandingPages';
 import * as summaryApi from './api/summaryApi';
 
+const pagePaths = {
+  home: '/',
+  about: '/about',
+  'how-to': '/how-to-use-this-ai-tool',
+  dashboard: '/dashboard'
+};
+
+function getPageFromPath(pathname) {
+  const match = Object.entries(pagePaths).find(([, path]) => path === pathname);
+  return match ? match[0] : 'home';
+}
+
 function App() {
+  const [activePage, setActivePage] = useState(() => getPageFromPath(window.location.pathname));
+  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
+  const [landingContent, setLandingContent] = useState(fallbackLandingContent);
   const [transcript, setTranscript] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -34,9 +50,45 @@ function App() {
 
   // Fetch past meetings and health status on load
   useEffect(() => {
+    loadLandingContent();
     checkHealth();
     loadMeetings();
   }, []);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setActivePage(getPageFromPath(window.location.pathname));
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const handleNavigate = (page) => {
+    const path = pagePaths[page] || pagePaths.home;
+    setActivePage(page);
+    window.history.pushState({}, '', path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleToggleTheme = () => {
+    setTheme(currentTheme => (currentTheme === 'dark' ? 'light' : 'dark'));
+  };
+
+  const loadLandingContent = async () => {
+    try {
+      const data = await summaryApi.getLandingContent();
+      setLandingContent(data || fallbackLandingContent);
+    } catch (err) {
+      console.error('Failed to load landing page content:', err);
+      setLandingContent(fallbackLandingContent);
+    }
+  };
 
   const checkHealth = async () => {
     try {
@@ -171,6 +223,18 @@ function App() {
     setError(null);
   };
 
+  if (activePage !== 'dashboard') {
+    return (
+      <LandingPages
+        activePage={activePage}
+        content={landingContent}
+        theme={theme}
+        onNavigate={handleNavigate}
+        onToggleTheme={handleToggleTheme}
+      />
+    );
+  }
+
   return (
     <main className="app-shell">
       {/* Header */}
@@ -181,6 +245,17 @@ function App() {
             <h1>MeetSummarizer AI</h1>
             <p>Smart Structured Summaries with RAG Continuity</p>
           </div>
+        </div>
+
+        <div className="dashboard-actions">
+          <button className="secondary-button" onClick={() => handleNavigate('how-to')} type="button">
+            <HelpCircle size={16} />
+            <span>How to use this AI tool</span>
+          </button>
+          <button className="theme-toggle" onClick={handleToggleTheme} type="button">
+            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+            <span>{theme === 'dark' ? 'Light mode' : 'Dark mode'}</span>
+          </button>
         </div>
 
         <div className="header-status-badge">

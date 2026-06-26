@@ -39,6 +39,12 @@ export async function getHealth() {
   });
 }
 
+export async function getLandingContent() {
+  return apiRequest('/landing', {
+    method: 'GET'
+  });
+}
+
 
 
 async function apiRequest(path, options = {}) {
