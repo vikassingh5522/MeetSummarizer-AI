@@ -152,5 +152,53 @@
         }
       ]
     }
+  },
+  {
+    "id": "meet_lz2hxvsnt",
+    "title": "Meeting: review the payment module (Jun 26, 2026)",
+    "date": "2026-06-26T09:28:33.168Z",
+    "transcript": "Meeting: E-Commerce Platform Release Planning\nDate: August 18, 2026\nTime: 11:00 AM\n\nAlex (Project Manager):\nGood morning, everyone. Today's agenda is to review the payment module, discuss production readiness, and finalize the release schedule.\n\nRachel (Backend Developer):\nThe payment gateway integration is complete and has passed all integration tests.\n\nChris (Frontend Developer):\nThe checkout page is complete. I'm still working on improving mobile responsiveness.\n\nNina (DevOps Engineer):\nThe production infrastructure is ready. We'll perform the final deployment rehearsal tomorrow.\n\nKevin (QA Engineer):\nRegression testing is almost complete. I've identified one critical issue related to coupon validation that needs to be fixed before release.\n\nAlex:\nSince the coupon issue is critical, I recommend postponing the production release from August 20 to August 22.\n\nEveryone:\nAgreed.\n\nRachel:\nI'll fix the coupon validation API today.\n\nChris:\nI'll complete the mobile responsiveness improvements by August 19.\n\nNina:\nI'll conduct the deployment rehearsal tomorrow morning.\n\nKevin:\nI'll verify the coupon fix once Rachel completes it.\n\nAlex:\nI'll update the release plan and notify all stakeholders this afternoon.\n\nMeeting ended at 11:50 AM.",
+    "summary": {
+      "agenda": [
+        "review the payment module",
+        "discuss production readiness",
+        "finalize the release schedule"
+      ],
+      "decisions": [
+        "postpone the production release from August 20 to August 22. Reason: critical coupon validation issue"
+      ],
+      "action_items": [
+        {
+          "owner": "Rachel",
+          "task": "fix the coupon validation API",
+          "due_date": null,
+          "evidence": "I'll fix the coupon validation API today."
+        },
+        {
+          "owner": "Chris",
+          "task": "complete the mobile responsiveness improvements",
+          "due_date": "August 19",
+          "evidence": "I'll complete the mobile responsiveness improvements by August 19."
+        },
+        {
+          "owner": "Nina",
+          "task": "conduct the deployment rehearsal",
+          "due_date": null,
+          "evidence": "I'll conduct the deployment rehearsal tomorrow morning."
+        },
+        {
+          "owner": "Kevin",
+          "task": "verify the coupon fix",
+          "due_date": null,
+          "evidence": "I'll verify the coupon fix once Rachel completes it."
+        },
+        {
+          "owner": "Alex",
+          "task": "update the release plan and notify all stakeholders",
+          "due_date": null,
+          "evidence": "I'll update the release plan and notify all stakeholders this afternoon."
+        }
+      ]
+    }
   }
 ]
