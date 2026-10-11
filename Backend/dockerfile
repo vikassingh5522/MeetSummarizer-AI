@@ -1,0 +1,43 @@
+# Stage 1: Install production dependencies
+FROM node:22-alpine AS deps
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install production dependencies only
+RUN npm ci --omit=dev
+
+# Stage 2: Production image
+FROM node:22-alpine
+
+WORKDIR /app
+
+# Create data directory
+RUN mkdir -p /app/data
+
+# Copy production dependencies
+COPY --from=deps /app/node_modules ./node_modules
+
+# Copy package metadata
+COPY package.json ./
+
+# Copy application source
+COPY src/ ./src/
+
+# Copy seed data
+COPY data/ ./data/
+
+# Create non-root user and set permissions
+RUN addgroup -S appgroup \
+    && adduser -S appuser -G appgroup \
+    && chown -R appuser:appgroup /app
+
+USER appuser
+
+# Backend API port
+EXPOSE 5000
+
+# Start Node.js server
+CMD ["node", "src/server.js"]
